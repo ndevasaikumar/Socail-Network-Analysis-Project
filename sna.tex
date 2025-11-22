@@ -1,0 +1,552 @@
+\documentclass[12pt,a4paper]{article} 
+
+
+\usepackage[a4paper,margin=2cm]{geometry}
+\usepackage{setspace}  
+\usepackage{graphicx}  
+\usepackage{amsmath}
+\usepackage{titling}
+\usepackage{float}
+\usepackage{cite}
+\usepackage{hyperref}
+
+
+\onehalfspacing   
+
+\begin{document}
+
+% ---------------- TITLE PAGE ----------------
+\begin{titlepage}
+    \centering
+    % Logo
+   
+
+    % Institute
+    \textbf{\large Jaypee Institute of Information Technology, Noida}\\[0.5cm]
+    \textbf{\large Semester 7 (2025--2026)}\\[0.5cm]
+	 \includegraphics[width=0.25\textwidth]{logo.png}\\[1cm]
+    % Course details
+    \textbf{\large Course: Social Network Analysis}\\[0.3cm]
+    \textbf{\large Course Code: 15B1NCI732}\\[0.5cm]
+
+    % Title
+    {\Large\textbf{Mapping Friendships: Social Network Analysis of Facebook Ego Networks}}\\[0.5cm]
+
+    % Submitted to
+    \textbf{Submitted To:}\\
+    \large Dr. Bhawna Saxena\\[1cm]
+
+    % Submitted by
+    \textbf{Submitted By:}\\[0.8cm]
+   \begin{table}[h!]
+       \centering
+       \begin{tabular}{|c|c|c|}
+           \hline
+           \textbf{ Name } & \textbf{ Batch } & \textbf{Enrollment No.} \\
+           \hline
+           VIYOM SHUKLA & B12 & 22803030 \\
+           \hline
+           ABHIJEET KUMAR & B12 & 22803029 \\
+           \hline
+           N. DEVASAIKUMAR & B11 & 22103337 \\
+           \hline
+       \end{tabular}
+   \end{table}
+   
+\end{titlepage}
+\newpage
+\tableofcontents
+\newpage
+\section{Introduction}
+
+Social networks play a vital role in understanding how individuals connect, interact, and influence one another. In recent years, the analysis of online social platforms has become a major area of research in data science, sociology, computer science, and network theory. Among these platforms, Facebook provides one of the richest sources of relationship data, where users form connections known as “friendships.” Analyzing such networks helps reveal important structural patterns, influential users, community formations, and the overall interaction dynamics within a social ecosystem.
+
+\noindent This project, titled \textbf{“Mapping Friendships: Social Network Analysis of Facebook Ego Networks,”} focuses on examining the Facebook Combined Ego Network dataset collected from the Stanford SNAP repository. An \textbf{ego network} consists of a central user (the ego) along with their immediate friends (the alters) and the connections among those friends. By studying ego networks, we gain insights into individual-centric community structures, local connectivity patterns, communication flows, and influence spread in social systems.
+
+\noindent The goal of this project is to apply key \textbf{Social Network Analysis (SNA)} techniques using Python to extract meaningful information from the Facebook dataset. Metrics such as degree distribution, clustering coefficients, connected components, and centrality measures (including degree, betweenness, closeness, and eigenvector centrality) allow us to quantify user importance and understand the role each node plays in the network. Various graph visualizations and interactive network diagrams further help in revealing hidden structural patterns that cannot be observed through raw data alone.
+
+\noindent Through this analysis, the project demonstrates how graph theory and network science can be used to uncover critical insights from real-world social networks. This analysis not only deepens our understanding of online friendship patterns but also highlights how data-driven approaches can be used to study human social behavior at scale. The outcomes of this project provide a foundation for further research in areas such as community detection, recommendation systems, viral marketing, and network robustness.
+
+
+\newpage
+
+\section{System Overview}
+
+
+The system developed in this project is designed to analyze and interpret the structural characteristics of \textbf{Facebook Ego Networks} using concepts from Social Network Analysis (SNA) and graph theory. The project processes the \textbf{Facebook Combined Ego Network dataset}, transforms the raw data into graph structures, and applies analytical methods to uncover patterns within the network. The system operates in several stages, from data ingestion to visualization, resulting in meaningful insights about user relationships and network behavior.
+
+\noindent At the core of this system is \textbf{NetworkX}, a powerful Python library for graph creation and analysis. The Facebook dataset, consisting of edges representing friendships between users, is first loaded and converted into an undirected graph. This graph represents users as nodes and friendships as edges. From this, various structural properties are computed, such as the number of nodes, edges, connected components, and degree distributions.
+
+\noindent The system further extracts more sophisticated insights by calculating \textbf{centrality measures}, which help identify influential or well-connected individuals within the network. These measures include degree centrality, betweenness centrality, closeness centrality, and eigenvector centrality. Each of these metrics captures a different aspect of node importance, such as connectivity, influence over shortest paths, and proximity to other nodes.
+
+\noindent To support result interpretation, the system incorporates both static and dynamic visualization components. Using libraries like \textbf{Matplotlib} and \textbf{PyVis}, the system produces visual representations of the network structure. Static plots highlight degree distributions and connectivity, while interactive visualizations allow users to explore the network in a dynamic, zoomable, and user-friendly interface.
+
+\noindent The system is modular and scalable, enabling additional features such as community detection, approximate centrality computation for large graphs, and graph sampling to handle high node volumes. This flexible architecture ensures efficient processing and easy extension for future enhancements in network modeling or analysis.
+
+\noindent Overall, the system provides a comprehensive pipeline—from data loading to advanced visual analysis—allowing users to conduct an in-depth study of the structure and behavior of social networks using real-world Facebook friendship data.
+
+
+\newpage
+
+\section{Technologies Used}
+
+This project utilizes a combination of Python libraries, data analysis tools, and visualization frameworks to perform Social Network Analysis on the Facebook Ego Network dataset. Each technology plays a key role in data preprocessing, graph construction, metric computation, and visual interpretation.
+\begin{enumerate}
+\item\textbf{Python 3.x}
+Python serves as the core programming language for implementing graph analysis, data manipulation, and visualization. Its extensive library ecosystem makes it ideal for network analysis and scientific computing.
+
+\item\textbf{NetworkX}
+NetworkX is the primary library used for:
+\begin{itemize}
+    \item Creating and managing graph data structures
+    \item Computing centrality measures (degree, betweenness, closeness, eigenvector)
+    \item Extracting connected components and clustering coefficients
+    \item Performing graph sampling and subgraph analysis
+\end{itemize}
+It provides efficient algorithms that make network computation intuitive and scalable.
+
+\item\textbf{NumPy}
+NumPy is used for:
+\begin{itemize}
+    \item Numerical computations
+    \item Handling matrix-like structures
+    \item Supporting intermediate operations in centrality and distribution analysis
+\end{itemize}
+Its optimized array operations improve performance for large-scale graph data.
+
+\item\textbf{Matplotlib}
+Matplotlib is utilized for generating:
+\begin{itemize}
+    \item Degree distribution plots
+    \item Network diagrams
+    \item Static visualizations of sampled graphs
+\end{itemize}
+It provides high-quality charts essential for report-ready insights.
+
+\item\textbf{PyVis}
+PyVis is used to build:
+\begin{itemize}
+    \item Fully interactive network graphs
+    \item Visual interfaces where nodes can be moved, zoomed, and explored dynamically
+\end{itemize}
+This enhances user understanding of structural patterns and node relationships.
+
+\item\textbf{Jupyter Notebook}
+The entire project was developed and executed in a Jupyter Notebook environment, which enables:
+\begin{itemize}
+    \item Step-by-step execution
+    \item Inline visualizations
+    \item Easy documentation alongside code
+    \item Reproducible research structure
+\end{itemize}
+
+\item\textbf{SNAP Dataset}
+The Facebook Combined Ego Network dataset from the SNAP repository forms the foundation of the project. It provides:
+\begin{itemize}
+    \item Real-world friendship edges
+    \item Large and complex social graph structure
+    \item A suitable dataset for centrality, connectivity, and clustering analysis
+\end{itemize}
+
+\end{enumerate}
+
+
+\section{WorkFLow}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{_sna.png}
+    \caption{Work FLow of the Project}
+    \label{fig:shortlabec}
+\end{figure}
+\section{Implementation}
+
+The implementation of this project follows a systematic pipeline beginning with dataset loading and ending with advanced graph visualizations and centrality analysis. All tasks were executed in a Jupyter Notebook environment using Python. The following subsections summarize the core implementation steps.
+
+\subsection{Dataset Loading and Preprocessing}
+
+The project uses the Facebook Combined Ego Network dataset provided by SNAP.  
+The dataset is an edge list where each line represents a friendship between two users.
+
+\begin{verbatim}
+import networkx as nx
+
+# Load the Facebook ego network dataset
+G = nx.read_edgelist("dataset/facebook_combined.txt", nodetype=int)
+\end{verbatim}
+
+This step converts the dataset into an undirected graph where nodes represent users and edges represent friendships. Basic statistics are computed to verify successful loading:
+
+\begin{verbatim}
+print("Nodes:", G.number_of_nodes())
+print("Edges:", G.number_of_edges())
+\end{verbatim}
+
+\subsection{Graph Cleaning and Connected Components}
+
+Social networks often contain multiple weakly connected regions.  
+The graph is therefore reduced to its largest connected component (LCC):
+
+\begin{verbatim}
+largest_cc = max(nx.connected_components(G), key=len)
+G_cc = G.subgraph(largest_cc).copy()
+\end{verbatim}
+
+Working with the LCC ensures meaningful centrality computation and visualization.
+
+\subsection{Degree Distribution Analysis}
+
+Degree measures how many friends a user has.  
+The system computes and visualizes the degree distribution:
+
+\begin{verbatim}
+degrees = [deg for node, deg in G_cc.degree()]
+\end{verbatim}
+
+A histogram is generated using Matplotlib:
+
+\begin{verbatim}
+plt.hist(degrees, bins=50)
+plt.title('Degree Distribution')
+plt.xlabel('Degree')
+plt.ylabel('Frequency')
+\end{verbatim}
+
+This reveals that most users have few connections, while some behave as hubs.
+
+\subsection{Centrality Measures}
+
+Several centrality metrics are calculated to identify influential users.
+
+\subsubsection*{Degree Centrality}
+
+\begin{verbatim}
+deg_cent = nx.degree_centrality(G_cc)
+\end{verbatim}
+
+\subsubsection*{Betweenness Centrality}
+
+For large graphs, approximate betweenness is used:
+
+\begin{verbatim}
+betw_cent = nx.betweenness_centrality(G_cc, k=500,normalized=True)                                 
+\end{verbatim}
+
+\subsubsection*{Closeness Centrality}
+
+\begin{verbatim}
+clos_cent = nx.closeness_centrality(G_cc)
+\end{verbatim}
+
+\subsubsection*{Eigenvector Centrality}
+
+\begin{verbatim}
+eig_cent = nx.eigenvector_centrality(G_cc, max_iter=500)
+\end{verbatim}
+
+\subsection{Ranking Influential Users}
+
+The top 10 users are extracted:
+
+\begin{verbatim}
+top_10_betweenness = sorted(betw_cent,key=betw_cent.get,reverse=True)[:10] 
+\end{verbatim}
+
+These rankings are used for further analysis.
+\newpage
+\subsection{Network Visualization}
+
+\subsubsection*{Static Visualization (Matplotlib)}
+
+\begin{verbatim}
+pos = nx.spring_layout(G_cc)
+nx.draw(G_cc, pos, node_size=10, edge_color='gray')
+\end{verbatim}
+
+\subsubsection*{Interactive Visualization (PyVis)}
+
+\begin{verbatim}
+from pyvis.network import Network
+net = Network(height="750px", width="100%", notebook=False)
+net.from_nx(G_cc)
+net.show("facebook_ego_interactive.html")
+\end{verbatim}
+
+The generated HTML file supports zooming, panning, and node inspection.
+
+\subsection{Subgraph Sampling}
+
+To improve clarity in visualization, a random subset of nodes is extracted:
+
+\begin{verbatim}
+import random
+nodes_sample = random.sample(list(G_cc.nodes()), 500)
+H = G_cc.subgraph(nodes_sample)
+\end{verbatim}
+
+\subsection{Summary of Implementation}
+
+The system integrates graph creation, statistical analysis, centrality computation, static and interactive visualizations, and subgraph extraction. These combined steps create a robust Social Network Analysis workflow using real Facebook friendship data.
+\newpage
+
+\section{Key Features}
+
+The project incorporates several powerful analytical and visualization capabilities that make it an effective solution for studying large-scale social networks. The following key features highlight the strengths and uniqueness of the system:
+
+\begin{enumerate}
+
+    \item \textbf{Real-World Social Network Analysis}
+
+    The system analyzes the Facebook Combined Ego Network dataset from SNAP, providing practical insights into user connections, friendships, and influence patterns. This ensures the results reflect real-world social behavior rather than synthetic examples.
+
+    \item \textbf{Graph Construction and Preprocessing}
+
+    \begin{itemize}
+        \item Efficient conversion of raw edge data into an undirected graph.
+        \item Automatic extraction of the Largest Connected Component (LCC).
+        \item Ability to handle thousands of nodes and edges smoothly.
+    \end{itemize}
+
+    \item \textbf{Degree Distribution Insights}
+
+    The system computes and visualizes:
+    \begin{itemize}
+        \item Degree vs. frequency histogram
+        \item Identification of high-degree hubs
+        \item Understanding of user popularity and connectivity levels
+    \end{itemize}
+
+    \item \textbf{Centrality Metrics for Influential Node Detection}
+
+    Several centrality measures are implemented to identify key users:
+    \begin{itemize}
+        \item \textbf{Degree Centrality} — detects users with the highest number of direct connections.
+        \item \textbf{Betweenness Centrality} (approximate) — identifies bridge users connecting communities.
+        \item \textbf{Closeness Centrality} — measures user accessibility across the network.
+        \item \textbf{Eigenvector Centrality} — identifies users connected to other influential nodes.
+    \end{itemize}
+
+    \item \textbf{Interactive Network Visualization}
+
+    Using PyVis, the project provides:
+    \begin{itemize}
+        \item Zooming and panning
+        \item Node dragging interactions
+        \item Hover-based data inspection
+        \item Dynamic exploration of structural patterns
+    \end{itemize}
+
+    \item \textbf{Static Graph Visualizations}
+
+    Static network visualizations generated using Matplotlib include:
+    \begin{itemize}
+        \item Force-directed layouts
+        \item Degree-based color or size variations
+    \end{itemize}
+
+    \item \textbf{Subgraph Sampling for Clarity}
+
+    To handle large networks effectively:
+    \begin{itemize}
+        \item Random sampling of 300--500 nodes
+        \item Clean, lightweight mini-network representations
+        \item Reduced visual clutter and improved clarity
+    \end{itemize}
+
+    \item \textbf{Modular and Extendable Design}
+
+    The structure supports easy expansion into:
+    \begin{itemize}
+        \item Community detection
+        \item Clustering algorithms
+        \item Influence propagation modeling
+        \item Graph embeddings
+        \item Dynamic and temporal networks
+    \end{itemize}
+
+    \item \textbf{Performance Optimization}
+
+    The system uses multiple techniques to improve performance:
+    \begin{itemize}
+        \item Approximate betweenness centrality computation
+        \item Subgraph-based visualization for efficiency
+        \item Lazy loading and memory-efficient graph handling
+    \end{itemize}
+
+    \item \textbf{Reproducible Notebook Workflow}
+
+    The entire project is implemented in Jupyter Notebook, enabling:
+    \begin{itemize}
+        \item Step-by-step execution
+        \item Inline visualization
+        \item Easy experimentation and modification
+        \item Fully reusable and reproducible workflow
+    \end{itemize}
+
+\end{enumerate}
+\newpage
+\section{Findings}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{between.png}
+    \caption{Graph plotted after calculating Betweenness Centrality}
+    \label{fig:shorlabec}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{degree.png}
+    \caption{Graph plotted after calculating Degree Centrality}
+    \label{fig:shortabec}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{close.png}
+    \caption{Graph plotted after calculating Closeness Centrality}
+    \label{fig:shortlaec}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width = 0.6\textwidth]{eigen.png}
+\caption{Graph plotted after calculating Eigen Vector Centrality}
+\label{fig:123456}
+\end{figure}
+\section{Conclusion}
+
+The project \textit{``\textbf{Mapping Friendships: Social Network Analysis of Facebook Ego Networks''}} successfully demonstrates how graph theory and computational methods can be applied to understand the structural characteristics of online social relationships. By analyzing the Facebook ego network dataset, this study highlights how individuals are interconnected, how influence flows through the network, and how tightly knit communities emerge within larger social structures.
+
+\noindent Using \textbf{Python} and the \textbf{NetworkX} library, the project computes multiple centrality measures that help identify the most important users in the network. The results indicate that some nodes act as critical connectors with high betweenness centrality, others serve as influential hubs through high eigenvector values, and some maintain numerous direct connections reflected by high degree centrality. These observations mirror real-world social dynamics, where a small group of individuals often plays a disproportionately significant role in communication and information distribution.
+
+\noindent Community detection further strengthens the analysis by uncovering groups of users who share dense internal connections. These modular structures often represent real-life communities such as friends, colleagues, classmates, or interest-based circles. Identifying these clusters demonstrates the relevance of Social Network Analysis (SNA) in understanding human behavior, digital interactions, and the formation of social bonds.
+
+\noindent Visualization is also a key component of the project. Force-directed layouts and centrality-based node mapping reveal structural patterns that are not immediately apparent in raw data. By illustrating hubs, bridges, and community clusters, the graphical representations provide intuitive insights that support the analytical findings.
+
+\noindent Overall, the project integrates data processing, centrality computation, community detection, and visualization into a cohesive analytical workflow. It provides meaningful insights into how online friendships are structured and how influential users contribute to network connectivity. The study also emphasizes the practical utility of SNA techniques for analyzing large-scale social datasets. Future work may include advanced visual dashboards, interactive tools, or machine learning–based predictions to uncover even deeper insights from social network data.
+
+
+
+
+
+
+
+\newpage
+
+\section{Future Scope}
+
+Although this project provides a comprehensive analysis of Facebook ego networks using centrality measures, community detection, and visualization, there are numerous opportunities to enhance and extend the system. As social network analysis continues to evolve, several modern techniques and technologies can be integrated to improve the depth, accuracy, and scalability of the analysis.
+
+\subsection*{1. Integration of Machine Learning Models}
+
+Future work can include machine learning algorithms to predict:
+\begin{itemize}
+    \item Influential users
+    \item Potential new friendships
+    \item Community evolution over time
+    \item Viral content propagation paths
+\end{itemize}
+
+Graph Neural Networks (GNNs), such as GraphSAGE and Graph Convolutional Networks (GCNs), can be used to generate node embeddings and classify user roles within the network.
+
+\subsection*{2. Dynamic Network Analysis}
+
+The current project analyzes a static network. In real social platforms, relationships evolve over time. Extending the model to support temporal graphs would enable:
+\begin{itemize}
+    \item Tracking changes in friendships
+    \item Identifying periods of rapid growth or decline
+    \item Modeling real-time influence spread
+\end{itemize}
+
+This would significantly strengthen the understanding of long-term user behavior.
+
+\subsection*{3. Sentiment and Content-Based Analysis}
+
+If posts, comments, or interaction datasets are included, the system could be enhanced to:
+\begin{itemize}
+    \item Analyze user sentiments
+    \item Detect influential content creators
+    \item Measure emotional influence within communities
+\end{itemize}
+
+Combining SNA with natural language processing (NLP) would provide deeper insights.
+
+\subsection*{4. Enhanced Visualizations and Interactive Dashboards}
+
+Advanced tools such as Gephi, Plotly, Power BI, or Streamlit can be used to create:
+\begin{itemize}
+    \item Interactive 3D network visualizations
+    \item Dynamic node and edge filtering
+    \item Community heatmaps
+    \item User-controlled exploration of graph attributes
+\end{itemize}
+
+These visual improvements would make the analysis more intuitive.
+
+\subsection*{5. Real-Time Network Monitoring}
+
+By integrating social media APIs, the system can support:
+\begin{itemize}
+    \item Live network updates
+    \item Real-time detection of trending communities
+    \item Instant changes in centrality metrics
+\end{itemize}
+
+Such features are valuable for social media analytics and monitoring.
+
+\subsection*{6. Big Data Scalability}
+
+For networks with millions of nodes and edges, future versions can incorporate:
+\begin{itemize}
+    \item Distributed graph processing (Apache Spark GraphX, Neo4j, TigerGraph)
+    \item GPU-accelerated centrality computation
+    \item Parallel processing to reduce computation times
+\end{itemize}
+
+This would make the system suitable for enterprise-scale networks.
+
+\subsection*{7. Anomaly and Fraud Detection}
+
+SNA can also reveal abnormal or malicious behavior such as:
+\begin{itemize}
+    \item Fake profiles
+    \item Coordinated activity
+    \item Bot networks
+    \item Suspicious isolated or dense clusters
+\end{itemize}
+
+Integrating anomaly detection algorithms would greatly enhance the real-world usefulness of the system.
+
+
+\section{References}
+
+\begin{enumerate}
+    \item Jure Leskovec and Andrej Krevl. \textit{SNAP Datasets: Stanford Large Network Dataset Collection}. Retrieved from \url{https://snap.stanford.edu/data} \\
+    (Facebook Combined Ego Network Dataset)
+
+    \item Newman, M. E. J. (2010). \textit{Networks: An Introduction}. Oxford University Press. \\
+    (Foundational concepts of graph theory and social networks)
+
+    \item Wasserman, S., \& Faust, K. (1994). \textit{Social Network Analysis: Methods and Applications}. Cambridge University Press. \\
+    (Standard reference for SNA techniques and metrics)
+
+    \item Freeman, L. C. (1977). ``A Set of Measures of Centrality Based on Betweenness.'' \textit{Sociometry}. \\
+    (Introduced betweenness centrality)
+
+    \item Bonacich, P. (1987). ``Power and Centrality: A Family of Measures.'' \textit{American Journal of Sociology}. \\
+    (Introduced eigenvector centrality)
+
+    \item NetworkX Developers. \textit{NetworkX Documentation}. Retrieved from \url{https://networkx.org/documentation/stable/} \\
+    (Algorithms and graph computation tools used)
+
+    \item Matplotlib Developers. \textit{Matplotlib Documentation}. Retrieved from \url{https://matplotlib.org/} \\
+    (Graph visualization tools used)
+
+    \item Clauset, A., Newman, M. E. J., \& Moore, C. (2004). ``Finding Community Structure in Very Large Networks.'' \textit{Physical Review E}. \\
+    (Important work on modularity-based community detection)
+
+    \item Girvan, M., \& Newman, M. E. J. (2002). ``Community Structure in Social and Biological Networks.'' \textit{PNAS}. \\
+    (Introduced the Girvan--Newman community detection algorithm)
+
+    \item Barabási, A.-L. (2016). \textit{Network Science}. Cambridge University Press. \\
+    (Covers scale-free networks, hubs, and network structure)
+\end{enumerate}
+
+
+\end{document}
