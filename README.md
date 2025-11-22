@@ -1,40 +1,129 @@
-# Social-Network-Analysis-in-Python (facebook)
-
-Social Network Analysis in Python
-Networks today are part of our everyday life. Let's learn how to visualize and understand a social network in Python using Networks <br>
-
-## Dataset information
-The dataset you are referring to is the Facebook Social Circles Dataset, which is part of a collection of social network datasets. This dataset was collected by analyzing ego networks on Facebook, where an ego network is defined as a focal node (the ego) and all the nodes (friends) connected to it, along with the links (friendships) between these friends. The key aspects of this dataset include:
-
-     - Node Features: Information about individual users, although anonymized.
-     - Circles: Groups of friends, similar to how Facebook allows users to organize friends into different lists.
-     - Ego Networks: Networks centered around a specific user (the ego), including that user's friends and the connections between them.
-
-**Key Statistics:**
-
-    Nodes: 4039 (representing users)
-    Edges: 88234 (representing friendships)
-    Clustering Coefficient: 0.6055 (indicating a relatively high level of clustering)
-    Triangles: 1.61 million (showing the number of friend groups that are fully connected)
-    Diameter: 8 (the longest shortest path between any two nodes)
-    Effective Diameter: 4.7 (90th percentile of the shortest path lengths between nodes)
-    
-
-https://snap.stanford.edu/data/ego-Facebook.html <br>
-![betweenness_centrality](https://user-images.githubusercontent.com/25765644/141525940-b0f12e32-cff6-4d30-bd0f-45fba8d5091d.png)
-
-## Some Social Network Analysis Methods and Examples
-
-**1- Betweenness Centrality**<br>
-Betweenness centrality is defined as a measure of how often a node lies on the shortest path between all pairs of nodes in a network
-**2- Degree Centrality** <br>
 
 
-**3- Closeness Centrality** <br>
-**4- Eeigenvector Centrality** <br>
-**5- Find shortest path** <br>
-**6- Find all neighbors the nodes**<br>
-**7- Degree Graph** <br>
-**8- K-clique** <br>
-**9- K-core** <br>
-**10- pagerank** <br>
+# 🗺️ Mapping Friendships: Social Network Analysis of Facebook Ego Networks
+
+## 📌 Overview
+
+This project focuses on analyzing the **Facebook Combined Ego Network Dataset** using Social Network Analysis (SNA) techniques. The objective is to understand connectivity patterns, influential users, structural properties, and community behavior within ego networks.
+
+The analysis includes graph construction, preprocessing, centrality computation, visualization, and interpretation of insights.
+
+---
+
+## 📁 Dataset
+
+### **Facebook Combined Ego Network Dataset (SNAP)**
+
+* Nodes represent users
+* Edges represent friendships
+* Contains **4,039 nodes** and **88,234 edges**
+
+This dataset models how friendships cluster around individuals ("ego nodes").
+
+---
+
+## 🧠 Key Concepts
+
+### **Ego Network**
+
+An ego network consists of:
+
+* The central user (**ego**)
+* Their direct friends (**alters**)
+* The connections among those friends
+
+### **Centrality Measures Used**
+
+* **Degree Centrality** – user popularity
+* **Betweenness Centrality** – users acting as bridges
+* **Closeness Centrality** – ease of reaching others
+* **Eigenvector Centrality** – influence of a user based on neighbors
+
+---
+
+## 🛠️ Technologies Used
+
+* **Python 3.x**
+* **NetworkX** for graph processing
+* **Matplotlib / PyPlot** for visualization
+* **PyVis** for interactive network visualization
+* **NumPy / Pandas** for data handling
+* **Jupyter Notebook** for experiments
+
+---
+
+## ⚙️ Implementation Steps
+
+1. **Load edge-list dataset** from `facebook_combined.txt`
+2. **Construct undirected graph** using NetworkX
+3. **Extract Largest Connected Component (LCC)** for meaningful analysis
+4. **Compute degree distribution**
+5. **Calculate centrality metrics**
+6. **Generate plots & interactive visualizations**
+7. **Analyze top nodes** based on centrality
+8. **Export and interpret results**
+
+---
+
+## 🔄 Workflow
+
+Load Dataset
+  ↓
+Build Graph
+  ↓
+Preprocess (LCC Extraction)
+  ↓
+Compute Centralities
+  ↓
+Visualize Graphs
+  ↓
+Interpret Insights
+  ↓
+Export Results
+
+---
+
+## ⭐ Key Features
+
+* Real-world social graph analysis
+* Automatic graph preprocessing
+* Degree distribution insights
+* Top-k central node identification
+* Interactive visualization using PyVis
+* Exportable analysis outputs
+
+---
+
+## 📊 Outputs
+
+* Degree histogram
+* Centrality ranking table
+* Interactive HTML graph
+* Visualization of LCC
+
+---
+
+## 🚀 Future Scope
+
+* Community detection using Louvain / Girvan-Newman
+* Predictive modeling on user influence
+* Graph embeddings using DeepWalk or Node2Vec
+* Time-based network evolution studies
+
+---
+
+## 📝 References
+
+* SNAP Datasets — Jure Leskovec
+* *Networks: An Introduction* — M. E. J. Newman
+* *Social Network Analysis* — Wasserman & Faust
+* Research papers on centrality measures
+
+---
+
+## 👤 Author
+
+**N. Devasaikumar**
+B.Tech — Jaypee Institute of Information Technology
+
+
